@@ -97,6 +97,7 @@ $routes->group('/', ['filter' => 'role:perusahaan'], function ($routes) {
 $routes->group('/', ['filter' => 'role:pencari'], function ($routes) {
     $routes->get('/member', 'Member\Dashboard::index');
     $routes->get('/member/atur-profil', 'Member\Profile::index');
+    $routes->get('/profile/editPeserta', 'Member\Profile::editPeserta');
     // atur riwayat
     $routes->get('/member/atur-riwayat', 'Member\Profile::riwayat');
     $routes->get('/member/profile/post', 'Member\Profile::riwayatPost');

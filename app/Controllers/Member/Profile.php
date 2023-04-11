@@ -169,4 +169,35 @@ class Profile extends BaseController
             }
         }
     }
+    public function editPeserta()
+    {
+        $users = new \Myth\Auth\Models\UserModel();
+        $pencari = new \App\Models\OpenModel();
+        $pencari->setTables('pencari');
+        $userId = dekripsi($this->request->getPost('id'));
+
+        $datau =
+            [
+                'firstname' => $this->request->getPost('firstname'),
+                'lastname' => $this->request->getPost('lastname'),
+
+            ];
+
+        $data =
+            [
+                'NIK' => enkripkan($this->request->getPost('nik')),
+                'jenis_kelamin' => $this->request->getPost('jenisK'),
+                'tanggal_lahir' => $this->request->getPost('tanggallahir'),
+                'kota_tinggal' => enkripkan($this->request->getPost('kota')),
+                'alamat_member' => enkripkan($this->request->getPost('alamat')),
+                'deskripsi_member' => enkripkan($this->request->getPost('deskripsis')),
+                'keahlian_member' => enkripkan($this->request->getPost('keahlians')),
+                'pendidikan_id' => $this->request->getPost('pendidikan'),
+            ];
+        dd($data);
+        $users->where('id', $userId)->set($datau)->update();
+        $pencari->where('user_id', $userId)->set($data)->update();
+
+        return 200;
+    }
 }
