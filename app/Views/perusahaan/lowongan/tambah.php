@@ -23,7 +23,7 @@
                             <?= csrf_field() ?>
 
                             <div class="form-floating ">
-                                <input type="text" name="id_perusahaan" class="form-control " id="id_perusahaan" placeholder="Nama Perusahaan">
+                                <input type="hidden" name="id_perusahaan" class="form-control " id="id_perusahaan" placeholder="Nama Perusahaan" value="<?= $id = user()->id; ?>">
                                 <label for="id_perusahaan">Nama Perusahaan</label>
                             </div>
 

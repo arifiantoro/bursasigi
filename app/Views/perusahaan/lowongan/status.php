@@ -23,7 +23,7 @@
                             <thead class="bg-dark text-white">
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Lowongan</th>
+                                    <!-- <th>Nama Lowongan</th> -->
                                     <th>Posisi</th>
                                     <th>Status</th>
                                     <th>Pengaturan</th>
@@ -52,25 +52,25 @@
         'columns': [{
                 "data": "no"
             },
-            {
-                "data": "id_perusahaan"
-            },
+            // {
+            //     "data": "id_perusahaan"
+            // },
             {
                 "data": "posisi"
             },
             {
                 data: 'id_perusahaan',
                 "render": function(data) {
-                    return '<a class="btn btn-sm btn-primary" href="<?= base_url('admin/perusahaan/detail') ?>/' + data + '"><i class="bi bi-person-fill"></i> Lihat Detail Perusahaan</a>'
+                    return '<a class="btn btn-sm btn-primary disabled" href="<?= base_url('/perusahaan') ?>/' + data + '"><i class="bi bi-person-fill"></i> Aktif</a>'
                 }
             },
             {
                 data: 'id_perusahaan',
                 "render": function(data) {
                     let cetak = `
-                                      <a class="btn btn-sm btn-primary m-1" href="<?= base_url('admin/perusahaan/edit') ?>/` + data + `"><i class="bi bi-person-fill-gear"></i> Edit Profil</a>
-                                      <a class="btn btn-sm btn-warning m-1 disabled" href="<?= base_url('admin/perusahaan/ban') ?>/` + data + `"><i class="bi bi-person-fill-exclamation"></i> Ban perusahaan</a> 
-                                      <a class="btn btn-sm btn-danger m-1 disabled" href="<?= base_url('admin/perusahaan/delete') ?>/` + data + `"><i class="bi bi-person-dash-fill"></i> Hapus perusahaan</a>
+                                      <a class="btn btn-sm btn-primary m-1 disabled" href="<?= base_url('admin/perusahaan/edit') ?>/` + data + `"><i class="bi bi-person-fill-gear"></i> Edit Lowongan</a>
+                                     
+                                      <a class="btn btn-sm btn-danger m-1 disabled" href="<?= base_url('admin/perusahaan/delete') ?>/` + data + `"><i class="bi bi-person-dash-fill"></i> Hapus Lowongan</a>
                                     `;
                     return cetak;
                 }

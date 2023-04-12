@@ -9,6 +9,19 @@ class Loker extends BaseController
 {
     public function index()
     {
+        $db = db_connect();
+        $lowongan = $db->table('lowongan')
+            ->get()->getResult();
+        $data = array();
+        for ($i = 0; $i < count($lowongan); $i++) {
+            $data[$i] = (object) array(
+                'no' => $i + 1,
+                'id_perusahaan' => $lowongan[$i]->tags,
+                'posisi' =>  $lowongan[$i]->posisi,
+                'kota_domisili' =>  $lowongan[$i]->kota_domisili,
+
+            );
+        }
         return view('perusahaan/nav/header') . view('perusahaan/lowongan/status') . view('perusahaan/nav/footer');
     }
     public function status()
@@ -27,7 +40,7 @@ class Loker extends BaseController
             );
         }
 
-        dd($data);
+        // dd($data);
         return json_encode($data);
     }
 
