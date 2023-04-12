@@ -11,12 +11,13 @@ class Loker extends BaseController
     {
         $db = db_connect();
         $lowongan = $db->table('lowongan')
+            ->where('id_perusahaan', user()->id)
             ->get()->getResult();
+        // dd($lowongan);
         $data = array();
         for ($i = 0; $i < count($lowongan); $i++) {
             $data[$i] = (object) array(
                 'no' => $i + 1,
-                'id_perusahaan' => $lowongan[$i]->tags,
                 'posisi' =>  $lowongan[$i]->posisi,
                 'kota_domisili' =>  $lowongan[$i]->kota_domisili,
 
@@ -28,12 +29,14 @@ class Loker extends BaseController
     {
         $db = db_connect();
         $lowongan = $db->table('lowongan')
+            ->where('id_perusahaan', user()->id)
             ->get()->getResult();
         $data = array();
         for ($i = 0; $i < count($lowongan); $i++) {
             $data[$i] = (object) array(
                 'no' => $i + 1,
                 'id_perusahaan' => $lowongan[$i]->id_perusahaan,
+                'tanggal_ditutup' => $lowongan[$i]->tanggal_ditutup,
                 'posisi' =>  $lowongan[$i]->posisi,
                 'kota_domisili' =>  $lowongan[$i]->kota_domisili,
 

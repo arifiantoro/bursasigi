@@ -71,6 +71,7 @@ $routes->group('/', ['filter' => 'role:administrator'], function ($routes) {
 
     // Lahan Loker Admin
     $routes->get('admin/permintaanl', 'Admin\Lowongan::index');
+    $routes->get('admin/permintaanl/get', 'Admin\Lowongan::status');
 
     // Lahan Pengaturan Admin
     $routes->get('admin/atur-profile', 'Admin\Adminnya::index');

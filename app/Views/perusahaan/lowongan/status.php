@@ -59,9 +59,15 @@
                 "data": "posisi"
             },
             {
-                data: 'id_perusahaan',
+                "data": "tanggal_ditutup",
                 "render": function(data) {
-                    return '<a class="btn btn-sm btn-primary disabled" href="<?= base_url('/perusahaan') ?>/' + data + '"><i class="bi bi-person-fill"></i> Aktif</a>'
+                    var today = new Date();
+                    var tanggal_ditutup = new Date(data);
+                    if (tanggal_ditutup <= today) {
+                        return '<a class="btn btn-sm btn-danger disabled" href="<?= base_url('/perusahaan') ?>/' + data + '"><i class="bi bi-person-fill"></i> Ditutup</a>';
+                    } else {
+                        return '<a class="btn btn-sm btn-primary disabled" href="<?= base_url('/perusahaan') ?>/' + data + '"><i class="bi bi-person-fill"></i> Dibuka</a>';
+                    }
                 }
             },
             {
