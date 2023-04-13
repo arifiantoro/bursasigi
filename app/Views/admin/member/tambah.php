@@ -97,6 +97,10 @@
                                 <input type="text" name="kota" class="form-control " id="kota" placeholder="Kota Domisili">
                                 <label for="kota">Kota Domisili</label>
                             </div>
+                            <div class="form-floating mt-2">
+                                <input type="text" name="pekerjaan_dicari" class="form-control " id="pekerjaan_dicari" placeholder="Pekerjaan Dicari" value="<?= $member->pekerjaan_dicari ?>">
+                                <label for="pekerjaan_dicari">Pekerjaan Dicari</label>
+                            </div>
 
                             <div class="py-2">
                                 <div class="form-floating">
@@ -125,6 +129,11 @@
                             <div class="py-2 mt-1">
                                 <label for="Keahlian">Keahlian Peserta</label>
                                 <div id="editKeahlian"></div>
+                            </div>
+
+                            <div class="mt-2">
+                                <label for="tags">Tags</label>
+                                <input type="text" name="tags" class="form-control " id="tags" placeholder="Tags">
                             </div>
                             <button type="button" onclick="saving()" class="my-2 w-20 btn btn-primary"><i class="bi bi-save"></i> Simpan</button>
                         </form>
@@ -177,6 +186,21 @@
         placeholder: 'Keahlian Peserta',
         theme: 'snow'
     });
+</script>
+
+<script>
+    var input = document.querySelector('input[name=tags]')
+    var tagify = new Tagify(input, {
+        dropdown: {
+            maxItems: 0,
+            enabled: 0
+        },
+        whitelist: ["a", "aa", "aaa", "b", "bb", "ccc"]
+    })
+
+    tagify.on('change', console.log)
+
+    tagify.addTags(["Admin", "Teknisi"])
 </script>
 
 <script>

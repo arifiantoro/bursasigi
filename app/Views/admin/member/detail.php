@@ -43,6 +43,11 @@
               <td>:</td>
               <td><?= $member->pendidikan ?></td>
             </tr>
+            <tr>
+              <td>Pekerjaan Dicari</td>
+              <td>:</td>
+              <td><?= $member->pekerjaan_dicari ?></td>
+            </tr>
 
             <tr>
               <td>Pas Foto</td>

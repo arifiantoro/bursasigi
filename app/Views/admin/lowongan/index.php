@@ -51,14 +51,17 @@
                     var today = new Date();
                     var tanggal_ditutup = new Date(data);
                     if (tanggal_ditutup <= today) {
-                        return '<a class="btn btn-sm btn-danger disabled" href="<?= base_url('/perusahaan') ?>/' + data + '"><i class="bi bi-person-fill"></i> Ditutup</a>';
+                        return '<a class="btn btn-sm btn-danger disabled" href="<?= base_url('#') ?>/' + data + '"><i class="bi bi-person-fill"></i> Ditutup</a>';
                     } else {
                         return '<a class="btn btn-sm btn-primary" href="<?= base_url('/perusahaan') ?>/' + data + '"><i class="bi bi-person-fill"></i> Dibuka</a>';
                     }
                 }
             },
             {
-                "data": "posisi"
+                data: 'id_low',
+                "render": function(data) {
+                    return '<a class="btn btn-sm btn-primary" href="<?= base_url('admin/lowongan/detail') ?>/' + data + '"><i class="bi bi-eye"></i> Lihat Kandidat</a>'
+                }
             },
         ]
     });

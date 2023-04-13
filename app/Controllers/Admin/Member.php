@@ -69,6 +69,7 @@ class Member extends BaseController
 			'alamat_member' => dekripsi($member->alamat_member),
 			'deskripsi_member' => dekripsi($member->deskripsi_member),
 			'keahlian_member' => dekripsi($member->keahlian_member),
+			'pekerjaan_dicari' => $member->pekerjaan_dicari,
 			'pendidikan_id' => $member->pendidikan_id,
 			'email' => $member->email,
 			'username' => $member->username,
@@ -100,6 +101,7 @@ class Member extends BaseController
 			'alamat_member' => dekripsi($member->alamat_member),
 			'deskripsi_member' => dekripsi($member->deskripsi_member),
 			'keahlian_member' => dekripsi($member->keahlian_member),
+			'pekerjaan_dicari' => $member->pekerjaan_dicari,
 			'pendidikan_id' => $member->pendidikan_id,
 			'email' => $member->email,
 			'username' => $member->username,
@@ -107,6 +109,7 @@ class Member extends BaseController
 			'pendidikan' => $member->pendidikan,
 			'firstname' => $member->firstname,
 			'lastname' => $member->lastname,
+
 			'alamat' => dekripsi($member->alamat_member)
 		);
 
@@ -229,6 +232,8 @@ class Member extends BaseController
 			'deskripsi_member' => enkripkan($this->request->getPost('deskripsis')),
 			'keahlian_member' => enkripkan($this->request->getPost('keahlians')),
 			'pendidikan_id' => $this->request->getPost('pendidikan'),
+			'pekerjaan_dicari' => $this->request->getPost('pekerjaan_dicari'),
+			'tags' => $this->request->getPost('tags'),
 		];
 
 		$pencari->save($data);
@@ -260,6 +265,8 @@ class Member extends BaseController
 				'deskripsi_member' => enkripkan($this->request->getPost('deskripsis')),
 				'keahlian_member' => enkripkan($this->request->getPost('keahlians')),
 				'pendidikan_id' => $this->request->getPost('pendidikan'),
+				'pekerjaan_dicari' => $this->request->getPost('pekerjaan_dicari'),
+				'tags' => $this->request->getPost('tags'),
 			];
 
 		$users->where('id', $userId)->set($datau)->update();
