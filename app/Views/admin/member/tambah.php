@@ -98,7 +98,7 @@
                                 <label for="kota">Kota Domisili</label>
                             </div>
                             <div class="form-floating mt-2">
-                                <input type="text" name="pekerjaan_dicari" class="form-control " id="pekerjaan_dicari" placeholder="Pekerjaan Dicari" value="<?= $member->pekerjaan_dicari ?>">
+                                <input type="text" name="pekerjaan_dicari" class="form-control " id="pekerjaan_dicari" placeholder="Pekerjaan Dicari" value="">
                                 <label for="pekerjaan_dicari">Pekerjaan Dicari</label>
                             </div>
 
@@ -130,7 +130,10 @@
                                 <label for="Keahlian">Keahlian Peserta</label>
                                 <div id="editKeahlian"></div>
                             </div>
-
+                            <div class="py-2">
+                                <label for="floatingTextarea">Pas Foto</label>
+                                <input type="file" name="pasfoto" class="form-control " id="pasfoto" accept="image/jpeg,image/png" value="">
+                            </div>
                             <div class="mt-2">
                                 <label for="tags">Tags</label>
                                 <input type="text" name="tags" class="form-control " id="tags" placeholder="Tags">

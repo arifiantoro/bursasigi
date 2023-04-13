@@ -107,6 +107,11 @@
                             <div id="editKeahlian"></div>
                         </div>
 
+                        <div class="py-2">
+                            <label for="floatingTextarea">Pas Foto</label>
+                            <input type="file" name="pasfoto" class="form-control " id="pasfoto" accept="image/jpeg,image/png" value="">
+                        </div>
+
                         <div class="mt-2">
                             <label for="tags">Tags</label>
                             <input type="text" name="tags" class="form-control " id="tags" placeholder="Tags">
