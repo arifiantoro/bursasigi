@@ -58,7 +58,7 @@
                 }
             },
             {
-                data: 'id_low',
+                data: 'id_loker',
                 "render": function(data) {
                     return '<a class="btn btn-sm btn-primary" href="<?= base_url('admin/lowongan/detail') ?>/' + data + '"><i class="bi bi-eye"></i> Lihat Kandidat</a>'
                 }

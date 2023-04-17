@@ -92,6 +92,8 @@ $routes->group('/', ['filter' => 'role:perusahaan'], function ($routes) {
     $routes->get('/perusahaan/status/get', 'Perusahaan\Loker::status');
     $routes->get('/perusahaan/view', 'Perusahaan\Profil::index');
     $routes->get('/perusahaan/atur-profile', 'Perusahaan\Profil::edit');
+    $routes->post('/perusahaan/atur-profile/add', 'Perusahaan\Profil::add');
+    $routes->post('/perusahaan/edit-profile/update', 'Perusahaan\Profil::update');
     $routes->get('/perusahaan/ubah-password', 'Perusahaan\Dashboard::password');
     $routes->get('/perusahaan/ubah', 'Perusahaan\Dashboard::ubahpassword');
 });
@@ -100,7 +102,8 @@ $routes->group('/', ['filter' => 'role:perusahaan'], function ($routes) {
 $routes->group('/', ['filter' => 'role:pencari'], function ($routes) {
     $routes->get('/member', 'Member\Dashboard::index');
     $routes->get('/member/atur-profil', 'Member\Profile::index');
-    $routes->get('/profile/editPeserta', 'Member\Profile::editPeserta');
+    $routes->post('/profile/addPeserta', 'Member\Profile::addPeserta');
+    $routes->post('/profile/editPeserta', 'Member\Profile::editPeserta');
     // atur riwayat
     $routes->get('/member/atur-riwayat', 'Member\Profile::riwayat');
     $routes->get('/member/profile/post', 'Member\Profile::riwayatPost');

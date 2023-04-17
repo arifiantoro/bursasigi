@@ -19,52 +19,41 @@
                         <tr>
                             <td>Nama Penanggungjawab</td>
                             <td>:</td>
-                            <td><?= user()->firstname . " " . user()->lastname ?></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Bidang Usaha</td>
                             <td>:</td>
-                            <td><?= dekripsi($perusahaan->bidang_usaha) ?></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Nama Perusahaan</td>
                             <td>:</td>
-                            <td><?= dekripsi($perusahaan->nama_perusahaan) ?></td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>Kota Perusahaan</td>
                             <td>:</td>
-                            <td><?= dekripsi($perusahaan->kota) ?></td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>Alamat Perusahaan</td>
                             <td>:</td>
-                            <td><?= dekripsi($perusahaan->alamat_perusahaan) ?></td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>Deskripsi Perusahaan</td>
                             <td>:</td>
-                            <td><?= dekripsi($perusahaan->deskripsi_usaha) ?></td>
-                        </tr>
-
-                        <tr>
-                            <td>Telepon</td>
-                            <td>:</td>
-                            <td><?= $perusahaan->telepon ?></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>:</td>
-                            <td><?= $perusahaan->email ?></td>
+                            <td></td>
                         </tr>
 
                         <tr>
                             <td>Logo Perusahaan</td>
                             <td>:</td>
-                            <td><?= $perusahaan->pasfoto ?></td>
+                            <td></td>
                         </tr>
 
                     </table>

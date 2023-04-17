@@ -1,20 +1,20 @@
 <main class="p-3">
     <div class="card-title h3" style="color:#FF6600">
-        <h2>Lengkapi Biodata</h2>
+        <h2>Form Biodata Member</h2>
     </div>
     <form method="post" enctype="multipart/form-data">
         <?= csrf_field() ?>
-        <span>Biodata Profil Untuk Mengenalkan Diri Ke Perusahaan</span>
+        <span>Biodata Profil Untuk Mengenalkan Diri Anda Ke Perusahaan</span>
 
         <div class="form-floating ">
-            <input type="text" name="nik" class="form-control " id="nik" placeholder="NIK" value="">
+            <input type="text" name="nik" class="form-control " id="nik" placeholder="NIK" value="<?= dekripsi($profil->NIK) ?>">
             <label for="nik">NIK</label>
         </div>
 
         <div class="row py-2">
             <div class="col-md-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="firstname" placeholder="Nama Depan">
+                    <input type="text" class="form-control" id="firstname" placeholder="Nama Depan" value="">
                     <label for="floatingName">Nama Depan</label>
                 </div>
             </div>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-floating my-2">
-            <input type="date" name="tanggalLahir" class="form-control " id="ttl" placeholder="Tanggal Lahir" value="">
+            <input type="date" name="tanggalLahir" class="form-control " id="ttl" placeholder="Tanggal Lahir" value="<?= $profil->tanggal_lahir ?>">
             <label for="ttl">Tanggal Lahir</label>
         </div>
 
@@ -48,13 +48,13 @@
         </div>
 
         <div class="form-floating mt-2">
-            <input type="text" name="kota" class="form-control " id="kota" placeholder="Kota Domisili" value="">
+            <input type="text" name="kota" class="form-control " id="kota" placeholder="Kota Domisili" value="<?= dekripsi($profil->kota_tinggal) ?>">
             <label for="kota">Kota Domisili</label>
         </div>
 
         <div class="py-2">
             <div class="form-floating">
-                <textarea id="alamat" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;">  </textarea>
+                <textarea id="alamat" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"> <?= dekripsi($profil->alamat_member) ?> </textarea>
                 <label for="floatingTextarea">Alamat Member</label>
             </div>
         </div>
@@ -62,9 +62,13 @@
         <div class="py-2">
             <div class="form-floating">
                 <select class="form-select" placeholder="selection" id="pendidikan">
-                    <option value="" disabled selected>Pendidikan </option>
+                    <option value="" disabled>Pendidikan </option>
                     <?php foreach ($pendidikan as $p => $pendidikan) : ?>
-                        <option value=""><?= $pendidikan->nama_pendidikan ?></option>
+                        <?php if ($pendidikan->id == $profil->pendidikan_id) : ?>
+                            <option value="<?= $pendidikan->id ?>" selected><?= $pendidikan->nama_pendidikan ?></option>
+                        <?php else : ?>
+                            <option value="<?= $pendidikan->id ?>"><?= $pendidikan->nama_pendidikan ?></option>
+                        <?php endif ?>
                     <?php endforeach ?>
                 </select>
                 <label for="floatingTextarea">Pendidikan Terakhir</label>
@@ -73,12 +77,12 @@
 
         <div class="py-2">
             <label for="Deskripsi">Deskripsi Member</label>
-            <div id="editDeskripsi"></div>
+            <div id="editDeskripsi"><?= dekripsi($profil->deskripsi_member) ?></div>
         </div>
 
         <div class="py-2 mt-1">
             <label for="Keahlian">Keahlian Member</label>
-            <div id="editKeahlian"></div>
+            <div id="editKeahlian"><?= dekripsi($profil->keahlian_member) ?></div>
         </div>
         <button type="button" onclick="saving()" class="my-2 w-20 btn btn-primary"><i class="bi bi-save"></i> Simpan</button>
     </form>
@@ -141,7 +145,7 @@
         console.log(deskripsi);
 
         $.ajax({
-            url: '<?= base_url('/profile/addPeserta') ?>',
+            url: '<?= base_url('/profile/editPeserta') ?>',
             method: 'POST',
             data: {
                 csrf_test_name: token,

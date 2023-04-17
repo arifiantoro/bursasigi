@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use CodeIgniter\HTTP\Request;
 use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
@@ -141,6 +142,7 @@ class Perusahaan extends BaseController
 			'alamat_perusahaan' =>  enkripkan($this->request->getPost('alamat')),
 			'kota' =>  enkripkan($this->request->getPost('kota')),
 			'bidang_usaha' =>  enkripkan($this->request->getPost('bidangusaha')),
+			'telepon' => $this->request->getPost('telepon'),
 			'deskripsi_usaha' =>  enkripkan($this->request->getPost('deskripsis')),
 		];
 

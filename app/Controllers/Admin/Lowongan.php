@@ -9,12 +9,10 @@ class Lowongan extends BaseController
     public function index()
     {
         $db = db_connect();
-        $lowongan = $db->table('lowongan')
-            ->get()->getResult();
-        $perusahaan = new \App\Models\OpenModel();
-        $perusahaan->setTables('perusahaan');
-        $per = $perusahaan->select('perusahaan.*, lowongan.id as id_low,lowongan.id_perusahaan as id_per, lowongan.posisi as posisi, lowongan.tanggal_ditutup as tanggal_ditutup, lowongan.kota_domisili as kota_domisili')
-            ->join('lowongan', 'perusahaan.user_id = lowongan.id_perusahaan', 'LEFT')
+        $lowongan = new \App\Models\OpenModel();
+        $lowongan = $db->table('lowongan');
+        $per = $lowongan->select('lowongan.*, lowongan.id as id_loker, perusahaan.user_id as id, perusahaan.nama_perusahaan as nama_perusahaan')
+            ->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.user_id', 'LEFT')
             ->get()->getResult();
 
         // dd($per);
@@ -26,7 +24,7 @@ class Lowongan extends BaseController
                 'tanggal_ditutup' => $per[$i]->tanggal_ditutup,
                 'posisi' =>  $per[$i]->posisi,
                 'kota_domisili' =>  $per[$i]->kota_domisili,
-                'id_low' => $per[$i]->id_low,
+                'id_loker' => $per[$i]->id_loker,
             );
         }
         // dd($data);
@@ -38,13 +36,12 @@ class Lowongan extends BaseController
     public function status()
     {
         $db = db_connect();
-        $lowongan = $db->table('lowongan')
+        $lowongan = new \App\Models\OpenModel();
+        $lowongan = $db->table('lowongan');
+        $per = $lowongan->select('lowongan.*, lowongan.id as id_loker, perusahaan.user_id as id_per, perusahaan.nama_perusahaan as nama_perusahaan')
+            ->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.user_id', 'LEFT')
             ->get()->getResult();
-        $perusahaan = new \App\Models\OpenModel();
-        $perusahaan->setTables('perusahaan');
-        $per = $perusahaan->select('perusahaan.*, lowongan.id as id_low,lowongan.id_perusahaan as id_per, lowongan.posisi as posisi, lowongan.tanggal_ditutup as tanggal_ditutup, lowongan.kota_domisili as kota_domisili')
-            ->join('lowongan', 'perusahaan.user_id = lowongan.id_perusahaan', 'LEFT')
-            ->get()->getResult();
+
 
         // dd($per);
         $data = array();
@@ -55,7 +52,7 @@ class Lowongan extends BaseController
                 'tanggal_ditutup' => $per[$i]->tanggal_ditutup,
                 'posisi' =>  $per[$i]->posisi,
                 'kota_domisili' =>  $per[$i]->kota_domisili,
-                'id_low' => $per[$i]->id_low,
+                'id_loker' => $per[$i]->id_loker,
 
             );
         }

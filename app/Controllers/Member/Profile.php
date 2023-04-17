@@ -11,7 +11,14 @@ class Profile extends BaseController
         $db = db_connect();
         $profil = $db->table('pencari')->where('user_id', user()->id)->get()->getFirstRow();
         $pendidikan = $db->table('pendidikan')->get()->getResult();
-        return view('pencari/nav/header') . view('pencari/profil/profil', ['profil' => $profil, 'pendidikan' => $pendidikan]) . view('pencari/nav/footer');
+
+        if (empty($id)) {
+            return
+                view('pencari/nav/header') . view('pencari/profil/profiledit', ['profil' => $profil, 'pendidikan' => $pendidikan]) . view('pencari/nav/footer');
+        } else {
+            return
+                view('pencari/nav/header') . view('pencari/profil/profil', ['profil' => $profil, 'pendidikan' => $pendidikan]) . view('pencari/nav/footer');
+        }
     }
 
     public function riwayat()
@@ -169,6 +176,34 @@ class Profile extends BaseController
             }
         }
     }
+
+    public function addPeserta()
+    {
+        $userId =
+            user()->id;
+
+        $pencari = new \App\Models\OpenModel();
+        $pencari->setTables('pencari');
+
+
+
+        $data =
+            [
+                'NIK' => enkripkan($this->request->getPost('nik')),
+                'jenis_kelamin' => $this->request->getPost('jenisK'),
+                'tanggal_lahir' => $this->request->getPost('tanggallahir'),
+                'kota_tinggal' => enkripkan($this->request->getPost('kota')),
+                'alamat_member' => enkripkan($this->request->getPost('alamat')),
+                'deskripsi_member' => enkripkan($this->request->getPost('deskripsis')),
+                'keahlian_member' => enkripkan($this->request->getPost('keahlians')),
+                'pendidikan_id' => $this->request->getPost('pendidikan'),
+            ];
+        // dd($data);
+        $pencari->where('user_id', $userId)->set($data)->update();
+
+        return 200;
+    }
+
     public function editPeserta()
     {
         $users = new \Myth\Auth\Models\UserModel();

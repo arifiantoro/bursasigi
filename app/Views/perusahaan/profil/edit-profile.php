@@ -1,11 +1,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Lengkapi Data Perusahaan</h1>
+        <h1>Edit Data Perusahaan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?= base_url('/perusahaan') ?>">Perusahaan</a></li>
-                <li class="breadcrumb-item active">lengkapi</li>
+                <li class="breadcrumb-item active">edit</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -41,34 +41,32 @@
                                 </div>
                             </div> -->
 
-
-
                             <div class="form-floating">
-                                <input type="text" name="perusahaan" class="form-control " id="perusahaan" placeholder="Nama Perusahaan" value="">
+                                <input type="text" name="perusahaan" class="form-control " id="perusahaan" placeholder="Nama Perusahaan" value="<?= dekripsi($perusahaan->nama_perusahaan) ?>">
                                 <label for="nama">Nama Perusahaan</label>
                             </div>
 
                             <div class="py-2">
                                 <div class="form-floating ">
-                                    <input type="text" name="perusahaan" class="form-control " id="bidang" placeholder="Bidang Usaha" value="">
+                                    <input type="text" name="perusahaan" class="form-control " id="bidang" placeholder="Bidang Usaha" value="<?= dekripsi($perusahaan->bidang_usaha) ?>">
                                     <label for="bidang">Bidang Usaha</label>
                                 </div>
                             </div>
 
 
                             <div class="form-floating mt-2">
-                                <input type="text" name="kota" class="form-control " id="kota" placeholder="Kota Domisili" value="">
+                                <input type="text" name="kota" class="form-control " id="kota" placeholder="Kota Domisili" value="<?= dekripsi($perusahaan->kota) ?>">
                                 <label for="kota">Kota Domisili</label>
                             </div>
 
                             <div class="form-floating mt-2">
-                                <input type="text" name="telepon" class="form-control " id="telepon" placeholder="Kota Domisili" value="">
+                                <input type="text" name="telepon" class="form-control " id="telepon" placeholder="Telepon" value="<?= $perusahaan->telepon ?>">
                                 <label for="telepon">Telepon</label>
                             </div>
 
                             <div class="py-2">
                                 <div class="form-floating">
-                                    <textarea id="alamat" class="form-control" placeholder="Address" id="alamat" style="height: 100px;"> </textarea>
+                                    <textarea id="alamat" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"> <?= dekripsi($perusahaan->alamat_perusahaan) ?></textarea>
                                     <label for="floatingTextarea">Alamat perusahaan</label>
 
                                 </div>
@@ -76,7 +74,7 @@
 
                             <div class="py-2">
                                 <label for="Deskripsi">Deskripsi perusahaan</label>
-                                <div id="editDeskripsi"></div>
+                                <div id="editDeskripsi"><?= dekripsi($perusahaan->deskripsi_usaha) ?></div>
                             </div>
 
                             <button type="button" onclick="saving()" class="my-2 w-20 btn btn-primary"><i class="bi bi-save"></i> Edit</button>
@@ -123,11 +121,10 @@
         // console.log(deskripsi);
 
         $.ajax({
-            url: '<?= base_url('/perusahaan/profil/add') ?>',
+            url: '<?= base_url('/perusahaan/profil/update') ?>',
             method: 'POST',
             data: {
                 csrf_test_name: token,
-
                 nama_perusahaan: document.getElementById('perusahaan').value,
                 kota: document.getElementById('kota').value,
                 alamat: document.getElementById('alamat').value,
@@ -139,7 +136,7 @@
                 console.log(response)
                 swal.fire(
                     'Berhasil',
-                    'Data Telah Diperbarui',
+                    'Data Telah Diupdate',
                     'success'
                 )
                 location.href = '<?= base_url('/perusahaan/view') ?>'
