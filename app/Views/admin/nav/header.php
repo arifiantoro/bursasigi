@@ -238,8 +238,15 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="<?= base_url('/admin/permintaanl') ?>">
-          <i class="bi bi-building"></i>
+          <i class="bi bi-briefcase"></i>
           <span>Permintaan LoKer</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="<?= base_url('/admin/permintaanw') ?>">
+          <i class="bi bi-people"></i>
+          <span>Permintaan Interview</span>
         </a>
       </li>
 

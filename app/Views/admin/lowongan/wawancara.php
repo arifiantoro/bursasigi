@@ -1,13 +1,13 @@
 <main id="main" class="main">
 
     <div class="card-title p-3">
-        <h1 class="h4 fw-bold" style="line-height:0pt;">Info Loker</h1>
+        <h1 class="h4 fw-bold" style="line-height:0pt;">Info Panggilan Wawancara</h1>
         <span>Informasi Lowongan Kerja Yang Diposting Oleh Perusahaan</span>
     </div>
 
     <div class="card card-shadow bg-white py-3">
         <div class="card-title px-3">
-            Lowongan Saat Ini:
+            Panggilan Wawancara Saat Ini:
         </div>
 
         <div class="card-body">
@@ -16,9 +16,10 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Perusahaan</th>
-                        <th>Bagian Yang Dibutuhkan</th>
-                        <th>Alamat</th>
-                        <th>Detail</th>
+                        <th>Jadwal Wawancara</th>
+                        <th>Lokasi</th>
+                        <th>Kandidat</th>
+                        <th>Download Lampiran</th>
                     </tr>
                 </thead>
             </table>
@@ -65,7 +66,13 @@
             {
                 data: 'id_loker',
                 "render": function(data) {
-                    return '<a class="btn btn-sm btn-primary" href="<?= base_url('admin/lowongan/detail') ?>/' + data + '"><i class="bi bi-eye"></i> Lihat Kandidat</a>'
+                    return '<a class="btn btn-sm btn-primary" href="<?= base_url('admin/lowongan/detail') ?>/' + data + '"><i class="bi bi-eye"></i> Lihat</a>'
+                }
+            },
+            {
+                data: 'id_loker',
+                "render": function(data) {
+                    return '<a class="btn btn-sm btn-primary" href="<?= base_url('admin/lowongan/detail') ?>/' + data + '"><i class="bi bi-download"></i> Undangan</a>'
                 }
             },
         ]

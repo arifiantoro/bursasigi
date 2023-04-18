@@ -75,6 +75,10 @@ $routes->group('/', ['filter' => 'role:administrator'], function ($routes) {
     $routes->get('admin/loker/detail/(:any)', 'Admin\Lowongan::detail/$1');
     $routes->get('admin/loker/details/get/(:num)', 'Admin\Lowongan::detailkandidat/$1');
 
+    $routes->get('admin/lowongan/panggil', 'Admin\Lowongan::panggil');
+    $routes->match(['get', 'post'], 'admin/lowongan/panggil/post', 'Admin\Lowongan::panggilpos');
+    $routes->get('admin/permintaanw', 'Admin\Lowongan::wawancara');
+
     // Lahan Pengaturan Admin
     $routes->get('admin/atur-profile', 'Admin\Adminnya::index');
     $routes->get('admin/ubah-password', 'Admin\Adminnya::ubah');
@@ -90,6 +94,10 @@ $routes->group('/', ['filter' => 'role:perusahaan'], function ($routes) {
     $routes->post('/perusahaan/tambahlowongan/post', 'Perusahaan\Loker::store');
     $routes->get('/perusahaan/status', 'Perusahaan\Loker::index');
     $routes->get('/perusahaan/status/get', 'Perusahaan\Loker::status');
+
+    $routes->get('perusahaan/panggil', 'Perusahaan\Loker::panggil');
+    $routes->post('perusahaan/panggil/post', 'Perusahaan\Loker::panggilpos');
+
     $routes->get('/perusahaan/view', 'Perusahaan\Profil::index');
     $routes->get('/perusahaan/atur-profile', 'Perusahaan\Profil::edit');
     $routes->post('/perusahaan/atur-profile/add', 'Perusahaan\Profil::add');
