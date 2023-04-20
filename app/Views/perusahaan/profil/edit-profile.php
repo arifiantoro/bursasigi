@@ -41,7 +41,12 @@
                                 </div>
                             </div> -->
 
-                            <div class="form-floating">
+                            <div class="form-floating mt-2">
+                                <input type="text" name="telepon" class="form-control " id="telppj" placeholder="Telepon" value="<?= $perusahaan->telppj ?>">
+                                <label for="telepon">Telepon Penanggunjawab</label>
+                            </div>
+
+                            <div class="form-floating mt-2">
                                 <input type="text" name="perusahaan" class="form-control " id="perusahaan" placeholder="Nama Perusahaan" value="<?= dekripsi($perusahaan->nama_perusahaan) ?>">
                                 <label for="nama">Nama Perusahaan</label>
                             </div>
@@ -61,7 +66,7 @@
 
                             <div class="form-floating mt-2">
                                 <input type="text" name="telepon" class="form-control " id="telepon" placeholder="Telepon" value="<?= $perusahaan->telepon ?>">
-                                <label for="telepon">Telepon</label>
+                                <label for="telepon">Telepon Perusahaan</label>
                             </div>
 
                             <div class="py-2">
@@ -130,6 +135,7 @@
                 alamat: document.getElementById('alamat').value,
                 bidangusaha: document.getElementById('bidang').value,
                 telepon: document.getElementById('telepon').value,
+                telppj: document.getElementById('telppj').value,
                 deskripsis: deskripsi,
             },
             success: function(response) {

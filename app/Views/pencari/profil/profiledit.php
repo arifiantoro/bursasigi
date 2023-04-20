@@ -1,10 +1,12 @@
 <main class="p-3">
     <div class="card-title h3" style="color:#FF6600">
-        <h2>Form Biodata Member</h2>
+        <h2>Form Biodata</h2>
     </div>
     <form method="post" enctype="multipart/form-data">
         <?= csrf_field() ?>
         <span>Biodata Profil Untuk Mengenalkan Diri Anda Ke Perusahaan</span>
+
+        <input type="hidden" name="id" class="form-control " id="id" placeholder="id" value="<?= $profil->user_id ?>">
 
         <div class="form-floating ">
             <input type="text" name="nik" class="form-control " id="nik" placeholder="NIK" value="<?= dekripsi($profil->NIK) ?>">
@@ -14,24 +16,24 @@
         <div class="row py-2">
             <div class="col-md-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="firstname" placeholder="Nama Depan" value="">
+                    <input type="text" class="form-control" id="firstname" placeholder="Nama Depan" value="<?= $profil->firstname ?>">
                     <label for="floatingName">Nama Depan</label>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-floating ">
-                    <input type="text" name="lastname" class="form-control " id="lastname" placeholder="Your Name">
+                    <input type="text" name="lastname" class="form-control " id="lastname" placeholder="Your Name" value="<?= $profil->lastname ?>">
                     <label for="floatingName">Nama Belakang</label>
                 </div>
             </div>
         </div>
 
         <div class="form-floating my-2">
-            <input type="date" name="tanggalLahir" class="form-control " id="ttl" placeholder="Tanggal Lahir" value="<?= $profil->tanggal_lahir ?>">
+            <input type="date" name="tanggalLahir" class="form-control " id="tanggallahir" placeholder="Tanggal Lahir" value="<?= $profil->tanggal_lahir ?>">
             <label for="ttl">Tanggal Lahir</label>
         </div>
 
-        <span class="mt-2 h6">&nbsp;Jenis Kelamin Member</span> <br>
+        <span class="mt-2 h6">&nbsp;Jenis Kelamin</span> <br>
         <div class="d-flex flex-row my-2">
             <div class="form-check mx-2 my-2">
                 <input class="form-check-input" type="radio" name="ijk" id="ijk1">
@@ -47,6 +49,11 @@
             </div>
         </div>
 
+        <div class="form-floating my-2">
+            <input type="text" name="telppen" class="form-control " id="telppen" placeholder="Telepon Perusahaan" value="<?= $profil->telppen ?>">
+            <label for=" telppen">Telepon</label>
+        </div>
+
         <div class="form-floating mt-2">
             <input type="text" name="kota" class="form-control " id="kota" placeholder="Kota Domisili" value="<?= dekripsi($profil->kota_tinggal) ?>">
             <label for="kota">Kota Domisili</label>
@@ -55,7 +62,7 @@
         <div class="py-2">
             <div class="form-floating">
                 <textarea id="alamat" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"> <?= dekripsi($profil->alamat_member) ?> </textarea>
-                <label for="floatingTextarea">Alamat Member</label>
+                <label for="floatingTextarea">Alamat</label>
             </div>
         </div>
 
@@ -76,12 +83,12 @@
         </div>
 
         <div class="py-2">
-            <label for="Deskripsi">Deskripsi Member</label>
+            <label for="Deskripsi">Deskripsi Peserta</label>
             <div id="editDeskripsi"><?= dekripsi($profil->deskripsi_member) ?></div>
         </div>
 
         <div class="py-2 mt-1">
-            <label for="Keahlian">Keahlian Member</label>
+            <label for="Keahlian">Keahlian Peserta</label>
             <div id="editKeahlian"><?= dekripsi($profil->keahlian_member) ?></div>
         </div>
         <button type="button" onclick="saving()" class="my-2 w-20 btn btn-primary"><i class="bi bi-save"></i> Simpan</button>
@@ -141,27 +148,48 @@
         var jenis;
         var deskripsi = document.getElementById('editDeskripsi').children[0].innerHTML;
         var tentang = document.getElementById('editKeahlian').children[0].innerHTML;
+        if (document.getElementById('ijk1').checked == true) {
+            var jenis = 'Laki - Laki';
+        } else {
+            var jenis = 'Perempuan';
+        }
 
-        console.log(deskripsi);
+        // console.log(document.getElementById('id').value);
 
         $.ajax({
-            url: '<?= base_url('/profile/editPeserta') ?>',
+            url: '<?= base_url('Member/Profile/editPeserta') ?>',
             method: 'POST',
             data: {
                 csrf_test_name: token,
+                id: document.getElementById('id').value,
+                firstname: document.getElementById('firstname').value,
+                lastname: document.getElementById('lastname').value,
                 nik: document.getElementById('nik').value,
-                ttl: document.getElementById('ttl').value,
-                kota_domisili: document.getElementById('kota').value,
+                tanggallahir: document.getElementById('tanggallahir').value,
+                kota: document.getElementById('kota').value,
+                telppen: document.getElementById('telppen').value,
+                alamat: document.getElementById('alamat').value,
+                jenisK: jenis,
                 deskripsis: deskripsi,
                 keahlian: tentang,
+                pendidikan: document.getElementById('pendidikan').value,
             },
+
             success: function(response) {
                 console.log(response)
-                swal.fire(
-                    'Berhasil',
-                    'Profil Telah Diubah',
-                    'success'
-                )
+                if (response == 200) {
+                    swal.fire(
+                        'Berhasil',
+                        'Profil Telah Diperbarui',
+                        'success'
+                    )
+                } else {
+                    swal.fire(
+                        'Gagal Melakukan Process',
+                        'Error: ' + response,
+                        'error'
+                    )
+                }
                 location.href = '<?= base_url('/member') ?>'
             },
 

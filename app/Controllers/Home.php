@@ -22,8 +22,8 @@ class Home extends BaseController
     // public function enkripsi()
     // {
     //     $kata = enkripkan('PT Sinarindo Global Sarana');
-        
+
     //     dd($kata);
     // }
-    
+
 }

@@ -131,20 +131,19 @@ class Lowongan extends BaseController
         $db = db_connect();
         $wawancara = $db->table('lowongan')
             ->join('wawancara', 'lowongan.id = wawancara.id_lowongan', 'LEFT')
-            ->select('lowongan.*, wawancara.jadwal_wawancara, wawancara.lokasi, wawancara.undangan')
-            ->get()->getResult();
+            ->select('lowongan.*, lowongan.id as id_lowongan, wawancara.jadwal_wawancara, wawancara.lokasi, wawancara.undangan')
+            ->get()->getFirstRow();
+        // dd($wawancara);
 
-        for ($i = 0; $i < count($wawancara); $i++) {
-            $final[$i] = (object) array(
-                'no' => $i + 1,
-                'user_id' => $wawancara[$i]->id,
-                'jadwal_test' => $wawancara[$i]->jadwal_wawancara,
-                'lokasi' => $wawancara[$i]->lokasi,
-                'undangan' => $wawancara[$i]->undangan,
-            );
-        }
+        $final = (object) array(
+            'id_lowongan' => $wawancara->id,
+            'jadwal_test' => $wawancara->jadwal_wawancara,
+            'lokasi' => $wawancara->lokasi,
+            'undangan' => $wawancara->undangan,
+        );
 
-        // return json_encode($final);
+
+
         // dd($final);
         return view('admin/nav/header') . view('admin/lowongan/panggil', [
             'data' => $final
@@ -158,7 +157,7 @@ class Lowongan extends BaseController
         $db = db_connect();
         $wawancara = $db->table('lowongan')
             ->join('wawancara', 'lowongan.id = wawancara.id_lowongan', 'LEFT')
-            ->select('lowongan.*, wawancara.jadwal_wawancara, wawancara.lokasi, wawancara.undangan')
+            ->select('lowongan.*,lowongan.id as id_lowongan, wawancara.jadwal_wawancara, wawancara.lokasi, wawancara.undangan')
             ->get()->getResult();
 
         for ($i = 0; $i < count($wawancara); $i++) {

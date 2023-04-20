@@ -30,7 +30,7 @@
                                 </div>
 
                                 <div class="form-floating mt-2">
-                                    <input type="email" name="nik" class="form-control " id="email" placeholder="Email perusahaan">
+                                    <input type="email" name="email" class="form-control " id="email" placeholder="Email perusahaan">
                                     <label for="email">Email perusahaan</label>
                                 </div>
 
@@ -52,41 +52,42 @@
 
                             <div class="card-title">Form Biodata Perusahaan</div>
 
+                            <div class="form-floating my-2">
+                                <input type="text" name="perusahaan" class="form-control " id="perusahaan" placeholder="Nama Perusahaan">
+                                <label for="nik">Nama Perusahaan</label>
+                            </div>
+
                             <div class="row py-2">
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="firstname" placeholder="Nama Depan">
-                                        <label for="floatingName">Nama Penanggung Jawab Depan</label>
+                                        <label for="floatingName">Nama Depan Penanggung Jawab</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-floating ">
                                         <input type="text" name="lastname" class="form-control " id="lastname" placeholder="Your Name">
-                                        <label for="floatingName">Nama Penanggung Jawab Belakang</label>
+                                        <label for="floatingName">Nama Belakang Penanggung Jawab</label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-floating ">
-                                <input type="text" name="perusahaan" class="form-control " id="perusahaan" placeholder="Nama Perusahaan">
-                                <label for="nik">Nama Perusahaan</label>
-                            </div>
-
-                            <div class="form-floating ">
+                            <div class="form-floating my-2">
                                 <input type="text" name="perusahaan" class="form-control " id="bidang" placeholder="Nama Perusahaan">
                                 <label for="bidus">Bidang Usaha</label>
                             </div>
 
-                            <div class="form-floating ">
-                                <input type="text" name="perusahaan" class="form-control " id="bidang" placeholder="Nama Perusahaan">
-                                <label for="nik">email</label>
+                            <div class="form-floating my-2">
+                                <input type="text" name="telppj" class="form-control " id="ttl" placeholder="Telepon Penanggung Jawab">
+                                <label for="telppj">Telepon Penanggung Jawab</label>
                             </div>
 
                             <div class="form-floating my-2">
-                                <input type="date" name="tanggalLahir" class="form-control " id="ttl" placeholder="Tanggal Lahir">
-                                <label for="ttl">Tanggal Lahir</label>
+                                <input type="text" name="telepon" class="form-control " id="telepon" placeholder="Telepon Perusahaan">
+                                <label for="telepon">Telepon Perusahaan</label>
                             </div>
+
 
                             <div class="form-floating mt-2">
                                 <input type="text" name="kota" class="form-control " id="kota" placeholder="Kota Domisili">

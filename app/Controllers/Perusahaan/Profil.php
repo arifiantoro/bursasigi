@@ -70,6 +70,7 @@ class Profil extends BaseController
             'kota' =>  enkripkan($this->request->getPost('kota')),
             'bidang_usaha' =>  enkripkan($this->request->getPost('bidangusaha')),
             'telepon' => $this->request->getPost('telepon'),
+            'telppj' => $this->request->getPost('telppj'),
             'deskripsi_usaha' =>  enkripkan($this->request->getPost('deskripsis')),
         ];
         // dd($data);
@@ -90,12 +91,12 @@ class Profil extends BaseController
 
 
         $data = [
-            // 'user_id' =>  user()->id,
             'nama_perusahaan' =>  enkripkan($this->request->getPost('nama_perusahaan')),
             'alamat_perusahaan' =>  enkripkan($this->request->getPost('alamat')),
             'kota' =>  enkripkan($this->request->getPost('kota')),
             'bidang_usaha' =>  enkripkan($this->request->getPost('bidangusaha')),
             'telepon' => $this->request->getPost('telepon'),
+            'telppj' => $this->request->getPost('telppj'),
             'deskripsi_usaha' =>  enkripkan($this->request->getPost('deskripsis')),
         ];
         // dd($data);

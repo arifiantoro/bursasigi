@@ -22,6 +22,11 @@
                             <td><?= user()->firstname . " " . user()->lastname ?></td>
                         </tr>
                         <tr>
+                            <td>Telepon Penanggungjawab</td>
+                            <td>:</td>
+                            <td><?= $perusahaan->telppj ?></td>
+                        </tr>
+                        <tr>
                             <td>Bidang Usaha</td>
                             <td>:</td>
                             <td><?= dekripsi($perusahaan->bidang_usaha) ?></td>

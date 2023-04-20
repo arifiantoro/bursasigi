@@ -89,7 +89,7 @@
                         <input type="text" name="ijudul" id="judul" class="form-control">
 
                         <label for="bukti">Bukti </label>
-                        <input type="text" name="iBukti" id="bukti" class="form-control">
+                        <input type="file" name="iBukti" id="iBukti" class="form-control">
 
 
 

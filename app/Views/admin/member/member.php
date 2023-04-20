@@ -23,7 +23,7 @@
                 <h5 class="card-title">Peserta: </h5>
               </div>
               <div class="col-4 text-end">
-                <button class="btn btn-sm btn-primary" onclick="location.href='<?= base_url('admin/member/tambah') ?>'"><i class="bi bi-person-plus-fill"></i> Tambar Anggota Baru</button>
+                <button class="btn btn-sm btn-primary" onclick="location.href='<?= base_url('admin/member/tambah') ?>'"><i class="bi bi-person-plus-fill"></i> Tambah Anggota Baru</button>
               </div>
             </div>
             <table class="table table-stripped my-1" id="tablekan">

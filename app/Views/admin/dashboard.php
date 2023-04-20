@@ -22,7 +22,7 @@
             <div class="card info-card sales-card">
 
               <div class="card-body">
-                <h5 class="card-title">Anggota</h5>
+                <h5 class="card-title">Peserta</h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -30,8 +30,8 @@
                   </div>
                   <div class="ps-3">
                     <h6><?= $member ?></h6>
-                    <span class="text-muted small pt-1">Anggota Terdaftar</span> <br>
-                    <button class="btn btn-sm btn-outline-primary">Kelola Member</button>
+                    <span class="text-muted small pt-1">Terdaftar</span> <br>
+                    <button class="btn btn-sm btn-outline-primary">Kelola</button>
 
                   </div>
                 </div>
@@ -54,7 +54,7 @@
                   <div class="ps-3">
                     <h6><?= $usaha ?></h6>
                     <span class="text-muted small pt-1">Terafiliasi</span> <br>
-                    <button class="btn btn-sm btn-outline-primary">Kelola Perusahaan</button>
+                    <button class="btn btn-sm btn-outline-primary">Kelola</button>
                   </div>
                 </div>
               </div>

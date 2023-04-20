@@ -15,11 +15,11 @@
 
                     <form action="<?= base_url('admin/panggil/post') ?>" method="post">
                         <?= csrf_field() ?>
-                        <label for="lowong">Lowongan Kerja</label>
-                        <select name="iLowong" id="lowong" class="form-select"></select>
+
+                        <input type="hidden" id="lowong" name="lowong" placeholder="lowong" class="form-control" value="<?= $data->id_lowongan ?>">
 
                         <label for="Jadwalnya" class="mt-3">Jadwal Wawancara</label>
-                        <input type="date" name="jJadwal" id="jadwal" class="form-control">
+                        <input type="datetime-local" name="jJadwal" id="jadwal" class="form-control">
 
                         <label for="lokasi" class="mt-3">Lokasi</label>
                         <input type="text" id="lokasi" name="lokasi" placeholder="Lokasi Wawancara" class="form-control">
@@ -41,23 +41,5 @@
 
 <?= $this->section('customScript') ?>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $('#lowong').select2({
-        placeholder: 'Pilih Lowongan',
-        // dropdownParent: $('#main'),
-        ajax: {
-            delay: 250,
-            url: '<?= base_url('admin/lowongan/panggil/post') ?>',
-            dataType: "json",
-            processResults: function(data) {
-                // console.log(data)
-                // Transforms the top-level key of the response object from 'items' to 'results'
-                return {
-                    results: data.results
-                };
-            }
-        },
-        cache: true
-    })
-</script>
+
 <?= $this->endSection() ?>

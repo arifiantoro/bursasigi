@@ -9,15 +9,17 @@ class Profile extends BaseController
     public function index()
     {
         $db = db_connect();
-        $profil = $db->table('pencari')->where('user_id', user()->id)->get()->getFirstRow();
+        $profil = $db->table('pencari')->select('pencari.*, users.username, users.firstname, users.lastname, users.email')
+            ->join('users', 'pencari.user_id = users.id', 'LEFT')
+            ->where('user_id', user()->id)->get()->getFirstRow();
         $pendidikan = $db->table('pendidikan')->get()->getResult();
 
-        if (empty($id)) {
-            return
-                view('pencari/nav/header') . view('pencari/profil/profiledit', ['profil' => $profil, 'pendidikan' => $pendidikan]) . view('pencari/nav/footer');
-        } else {
+        if (empty($profil)) {
             return
                 view('pencari/nav/header') . view('pencari/profil/profil', ['profil' => $profil, 'pendidikan' => $pendidikan]) . view('pencari/nav/footer');
+        } else {
+            return
+                view('pencari/nav/header') . view('pencari/profil/profiledit', ['profil' => $profil, 'pendidikan' => $pendidikan]) . view('pencari/nav/footer');
         }
     }
 
@@ -113,15 +115,19 @@ class Profile extends BaseController
         // dd($this->request->getPost());
         $pencari = new \App\Models\OpenModel();
         $pencari->setTables('pencari_kompetensi');
+
         // dd($pencari);
         $data =
             [
                 'user_id' => dekripsi($this->request->getPost('iId')),
                 'jenis_kompetensi'     => enkripkan($this->request->getPost('inama')),
-                'judul_kompetensi' => enkripkan($this->request->getPost('iBukti')),
-                'bukti_kompetensi' => $this->request->getPost('iBukti'),
+                'judul_kompetensi' => enkripkan($this->request->getPost('iJudul')),
+                'bukti_kompetensi' => enkripkan($this->request->getFile('iBukti')),
             ];
+
+
         $pencari->save($data);
+        // $bukti->move(FCPATH . '/uploads/member/bukti', $file);
 
         return redirect()->to('member/atur-kompetensi');
     }
@@ -179,8 +185,8 @@ class Profile extends BaseController
 
     public function addPeserta()
     {
-        $userId =
-            user()->id;
+        // $userId =
+        //     user()->id;
 
         $pencari = new \App\Models\OpenModel();
         $pencari->setTables('pencari');
@@ -189,17 +195,19 @@ class Profile extends BaseController
 
         $data =
             [
+                'user_id' => user()->id,
                 'NIK' => enkripkan($this->request->getPost('nik')),
                 'jenis_kelamin' => $this->request->getPost('jenisK'),
                 'tanggal_lahir' => $this->request->getPost('tanggallahir'),
+                'telppen' => $this->request->getPost('telppen'),
                 'kota_tinggal' => enkripkan($this->request->getPost('kota')),
                 'alamat_member' => enkripkan($this->request->getPost('alamat')),
                 'deskripsi_member' => enkripkan($this->request->getPost('deskripsis')),
-                'keahlian_member' => enkripkan($this->request->getPost('keahlians')),
+                'keahlian_member' => enkripkan($this->request->getPost('keahlian')),
                 'pendidikan_id' => $this->request->getPost('pendidikan'),
             ];
         // dd($data);
-        $pencari->where('user_id', $userId)->set($data)->update();
+        $pencari->save($data);
 
         return 200;
     }
@@ -209,7 +217,8 @@ class Profile extends BaseController
         $users = new \Myth\Auth\Models\UserModel();
         $pencari = new \App\Models\OpenModel();
         $pencari->setTables('pencari');
-        $userId = dekripsi($this->request->getPost('id'));
+        $userId =
+            user()->id;
 
         $datau =
             [
@@ -225,14 +234,14 @@ class Profile extends BaseController
                 'tanggal_lahir' => $this->request->getPost('tanggallahir'),
                 'kota_tinggal' => enkripkan($this->request->getPost('kota')),
                 'alamat_member' => enkripkan($this->request->getPost('alamat')),
+                'telppen' => $this->request->getPost('telppen'),
                 'deskripsi_member' => enkripkan($this->request->getPost('deskripsis')),
-                'keahlian_member' => enkripkan($this->request->getPost('keahlians')),
+                'keahlian_member' => enkripkan($this->request->getPost('keahlian')),
                 'pendidikan_id' => $this->request->getPost('pendidikan'),
             ];
-        dd($data);
         $users->where('id', $userId)->set($datau)->update();
         $pencari->where('user_id', $userId)->set($data)->update();
-
+        // dd($pencari);
         return 200;
     }
 }

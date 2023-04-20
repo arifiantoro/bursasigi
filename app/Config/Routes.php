@@ -76,7 +76,7 @@ $routes->group('/', ['filter' => 'role:administrator'], function ($routes) {
     $routes->get('admin/loker/details/get/(:num)', 'Admin\Lowongan::detailkandidat/$1');
 
     $routes->get('admin/lowongan/panggil', 'Admin\Lowongan::panggil');
-    $routes->match(['get', 'post'], 'admin/lowongan/panggil/post', 'Admin\Lowongan::panggilpos');
+    $routes->Post('admin/lowongan/panggil/post', 'Admin\Lowongan::panggilpos');
     $routes->get('admin/permintaanw', 'Admin\Lowongan::wawancara');
 
     // Lahan Pengaturan Admin

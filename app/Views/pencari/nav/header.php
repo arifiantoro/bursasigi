@@ -6,6 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?= csrf_meta() ?>
 
     <!-- Vendor CSS Files -->
     <link href="<?= base_url('asset_admin/vendor/quill/quill.snow.css') ?>" rel="stylesheet">

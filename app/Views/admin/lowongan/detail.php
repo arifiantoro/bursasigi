@@ -28,7 +28,7 @@
                         <th>Kompetensi</th>
                         <th>Pendidikan</th>
                         <th>Usia</th>
-                        <th>Portofolio</th>
+                        <th>Portfolio</th>
                         <th>Hasil Psikotes</th>
                     </tr>
                 </thead>
